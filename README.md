@@ -235,25 +235,28 @@ To avoid this, the project uses **cell-level group splitting** through `GroupKFo
 
 ## Results
 
-Results are populated after a full model run.
+### RUL Forecasting Performance
 
 ### RUL Forecasting Performance
 
-| Model | RMSE — cycles | MAE — cycles |
-|---|---:|---:|
-| ARIMA — per-cell baseline | — | — |
-| GBM — all engineered features | — | — |
-| GBM — capacity-only baseline | — | — |
+| Model | RMSE, cycles | MAE, cycles | R² |
+|---|---:|---:|---:|
+| ARIMA baseline | 267.57 | 244.20 | -26.20 |
+| XGBoost, capacity-only baseline | 22.11 | 15.82 | 0.5144 |
+| XGBoost, all engineered features | 13.52 | 10.01 | 0.8247 |
+
 
 ### Weibull Reliability Summary
 
-| Weibull Parameter | Estimate | 95% CI |
-|---|---:|---:|
-| Shape `β` | — | — |
-| Scale `η` — cycles | — | — |
-| B10 life — cycles | — | — |
-
----
+| Weibull Parameter | Estimate | Interpretation |
+|---|---:|---|
+| Shape `β` | 1.14 | Failure risk increases gradually over time |
+| Scale `η`, cycles | 263.59 | Characteristic life of the fitted Weibull distribution |
+| B10 life, cycles | 36.61 | Estimated cycle count where 10% of cells fail |
+| B50 life, cycles | 191.11 | Estimated cycle count where 50% of cells fail |
+| Failure behavior | Wear-out ageing | Since `β > 1`, batteries exhibit ageing-related failure behavior |
+| Failed cells | 8 | Cells that reached the 70% capacity-retention threshold |
+| Censored cells | 30 | Cells that did not reach End-of-Life during the experiment |
 
 ## Limitations
 

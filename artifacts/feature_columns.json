@@ -1,0 +1,15 @@
+{
+    "feature_columns": [
+        "capacity_retention",
+        "capacity_fade",
+        "capacity_fade_rate",
+        "voltage_mean",
+        "voltage_slope",
+        "time_to_3v",
+        "temp_max",
+        "temp_rise",
+        "duration_s",
+        "Re",
+        "Rct"
+    ]
+}

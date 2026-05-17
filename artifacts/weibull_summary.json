@@ -1,0 +1,10 @@
+{
+    "beta": 1.1399601901692535,
+    "eta": 263.5865224745271,
+    "b10_life": 36.609446516808944,
+    "b50_life": 191.11357467981838,
+    "failure_behavior": "Wear-out ageing",
+    "num_cells": 38,
+    "num_failed_cells": 8,
+    "num_censored_cells": 30
+}

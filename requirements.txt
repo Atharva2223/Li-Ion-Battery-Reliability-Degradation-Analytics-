@@ -13,3 +13,6 @@ statsmodels
 streamlit
 jupyter
 notebook
+shap
+joblib
+plotly

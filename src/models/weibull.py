@@ -1,6 +1,10 @@
 from pathlib import Path
+
+from tensorboard import summary
 import numpy as np
 import pandas as pd
+import json
+import joblib
 
 import matplotlib.pyplot as plt
 
@@ -120,17 +124,58 @@ def run_weibull_analysis(
     features = pd.read_parquet(feature_path)
 
     summary = prepare_failure_data(features)
-
     wf = fit_weibull(summary)
 
     print_reliability_summary(wf)
+
+    save_weibull_artifacts(wf, summary)
 
     plot_survival_curve(wf)
 
     plot_hazard_curve(wf)
 
     return wf, summary
+def save_weibull_artifacts(wf, summary_df):
+    """
+    Save fitted Weibull model and reliability summary for dashboard use.
+    """
 
+    artifact_dir = Path("artifacts")
+    artifact_dir.mkdir(parents=True, exist_ok=True)
+
+    model_path = artifact_dir / "weibull_model.pkl"
+    summary_path = artifact_dir / "weibull_summary.json"
+
+    beta = float(wf.rho_)
+    eta = float(wf.lambda_)
+    b10 = float(compute_b_life(wf, 0.10))
+    b50 = float(compute_b_life(wf, 0.50))
+
+    if beta < 1:
+        interpretation = "Early-life failures"
+    elif np.isclose(beta, 1, atol=0.1):
+        interpretation = "Random failures"
+    else:
+        interpretation = "Wear-out ageing"
+
+    payload = {
+        "beta": beta,
+        "eta": eta,
+        "b10_life": b10,
+        "b50_life": b50,
+        "failure_behavior": interpretation,
+        "num_cells": int(summary_df["cell_id"].nunique()),
+        "num_failed_cells": int(summary_df["event"].sum()),
+        "num_censored_cells": int((~summary_df["event"].astype(bool)).sum()),
+    }
+
+    joblib.dump(wf, model_path)
+
+    with open(summary_path, "w", encoding="utf-8") as f:
+        json.dump(payload, f, indent=4)
+
+    print(f"Saved Weibull model to: {model_path}")
+    print(f"Saved Weibull summary to: {summary_path}")
 
 if __name__ == "__main__":
     wf, summary = run_weibull_analysis()

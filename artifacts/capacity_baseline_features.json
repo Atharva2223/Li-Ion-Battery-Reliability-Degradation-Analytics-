@@ -1,0 +1,11 @@
+{
+    "feature_columns": [
+        "capacity_ah",
+        "initial_capacity_ah",
+        "capacity_retention",
+        "capacity_fade",
+        "capacity_diff",
+        "capacity_fade_rate",
+        "capacity_roll_mean_5"
+    ]
+}
