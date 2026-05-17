@@ -40,29 +40,29 @@ WEIBULL_SUMMARY_PATH = PROJECT_ROOT / "artifacts" / "weibull_summary.json"
 
 
 # =====================================================
-# Theme Palette (Vercel / Linear inspired)
+# Theme Palette
 # =====================================================
 
 COLORS = {
-    "bg":           "#0A0A0A",   # near black
-    "bg_card":      "#111111",   # card background
-    "bg_elevated":  "#161616",   # hover/elevated surfaces
-    "border":       "#1F1F1F",   # subtle borders
+    "bg":           "#0A0A0A",
+    "bg_card":      "#111111",
+    "bg_elevated":  "#161616",
+    "border":       "#1F1F1F",
     "border_hover": "#2A2A2A",
-    "text":         "#EDEDED",   # primary text
-    "text_dim":     "#A0A0A0",   # secondary text
-    "text_muted":   "#666666",   # tertiary / labels
-    "accent":       "#3B82F6",   # primary blue
-    "accent_2":     "#8B5CF6",   # purple
-    "green":        "#10B981",   # healthy
-    "amber":        "#F59E0B",   # warning
-    "red":          "#EF4444",   # critical / EoL
+    "text":         "#EDEDED",
+    "text_dim":     "#A0A0A0",
+    "text_muted":   "#666666",
+    "accent":       "#3B82F6",
+    "accent_2":     "#8B5CF6",
+    "green":        "#10B981",
+    "amber":        "#F59E0B",
+    "red":          "#EF4444",
     "gradient_1":   "linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%)",
-    "gradient_2":   "linear-gradient(135deg, #10B981 0%, #3B82F6 100%)",
 }
 
 CELL_COLORS = ["#3B82F6", "#8B5CF6", "#EC4899", "#F59E0B", "#10B981",
-               "#06B6D4", "#EF4444", "#14B8A6", "#A855F7", "#F97316"]
+               "#06B6D4", "#EF4444", "#14B8A6", "#A855F7", "#F97316",
+               "#0EA5E9", "#D946EF", "#84CC16", "#F43F5E", "#22D3EE"]
 
 
 # =====================================================
@@ -71,19 +71,16 @@ CELL_COLORS = ["#3B82F6", "#8B5CF6", "#EC4899", "#F59E0B", "#10B981",
 
 st.markdown(f"""
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
-    /* App background */
     .stApp {{
         background: {COLORS['bg']};
         color: {COLORS['text']};
         font-family: 'Inter', -apple-system, sans-serif;
     }}
-
-    /* Remove top padding, hide Streamlit chrome */
     .block-container {{
         padding: 2rem 3rem 3rem 3rem !important;
-        max-width: 100%;
+        max-width: 1600px !important;
     }}
     #MainMenu, footer, header {{ visibility: hidden; }}
     [data-testid="stToolbar"] {{ display: none; }}
@@ -93,19 +90,13 @@ st.markdown(f"""
         background: #050505 !important;
         border-right: 1px solid {COLORS['border']};
     }}
-    [data-testid="stSidebar"] > div:first-child {{
-        padding-top: 1.5rem;
-    }}
+    [data-testid="stSidebar"] > div:first-child {{ padding-top: 1.5rem; }}
     [data-testid="stSidebar"] .stRadio > label {{
         color: {COLORS['text_dim']};
-        font-size: 11px;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
+        font-size: 11px; font-weight: 600;
+        text-transform: uppercase; letter-spacing: 0.08em;
     }}
-    [data-testid="stSidebar"] .stRadio > div {{
-        gap: 4px !important;
-    }}
+    [data-testid="stSidebar"] .stRadio > div {{ gap: 4px !important; }}
     [data-testid="stSidebar"] .stRadio > div > label {{
         background: transparent;
         padding: 10px 14px !important;
@@ -119,15 +110,13 @@ st.markdown(f"""
         background: {COLORS['bg_card']};
         color: {COLORS['text']} !important;
     }}
-    [data-testid="stSidebar"] .stRadio > div > label[data-checked="true"],
     [data-testid="stSidebar"] .stRadio > div > label:has(input:checked) {{
         background: {COLORS['bg_elevated']};
         color: {COLORS['text']} !important;
         border-color: {COLORS['border_hover']};
     }}
     [data-testid="stSidebar"] .stRadio div[role="radiogroup"] label p {{
-        font-size: 13.5px;
-        font-weight: 500;
+        font-size: 13.5px; font-weight: 500;
     }}
     [data-testid="stSidebar"] hr {{
         margin: 1rem 0 !important;
@@ -142,32 +131,27 @@ st.markdown(f"""
     }}
     .stMarkdown p {{ color: {COLORS['text_dim']}; }}
 
-    /* Hero / Page title */
+    /* Page title */
     .page-title {{
-        font-size: 28px;
-        font-weight: 700;
+        font-size: 28px; font-weight: 700;
         color: {COLORS['text']};
         margin: 0 0 4px 0;
         letter-spacing: -0.025em;
     }}
     .page-subtitle {{
-        font-size: 14px;
-        color: {COLORS['text_dim']};
-        margin: 0 0 24px 0;
-        font-weight: 400;
+        font-size: 14px; color: {COLORS['text_dim']};
+        margin: 0 0 24px 0; font-weight: 400;
     }}
 
     /* Section header */
     .section-title {{
-        font-size: 13px;
-        font-weight: 600;
+        font-size: 13px; font-weight: 600;
         color: {COLORS['text_muted']};
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-        margin: 24px 0 12px 0;
+        text-transform: uppercase; letter-spacing: 0.08em;
+        margin: 28px 0 14px 0;
     }}
 
-    /* KPI Cards */
+    /* KPI cards */
     .kpi {{
         background: {COLORS['bg_card']};
         border: 1px solid {COLORS['border']};
@@ -175,63 +159,44 @@ st.markdown(f"""
         padding: 18px 20px;
         transition: all 0.2s;
         height: 100%;
+        min-height: 100px;
     }}
     .kpi:hover {{
         border-color: {COLORS['border_hover']};
         background: {COLORS['bg_elevated']};
     }}
     .kpi-label {{
-        font-size: 11px;
-        font-weight: 600;
+        font-size: 11px; font-weight: 600;
         color: {COLORS['text_muted']};
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
+        text-transform: uppercase; letter-spacing: 0.08em;
         margin-bottom: 8px;
     }}
     .kpi-value {{
-        font-size: 28px;
-        font-weight: 700;
+        font-size: 26px; font-weight: 700;
         color: {COLORS['text']};
-        line-height: 1;
-        letter-spacing: -0.02em;
-        font-family: 'Inter', sans-serif;
+        line-height: 1.1; letter-spacing: -0.02em;
     }}
     .kpi-unit {{
-        font-size: 14px;
-        color: {COLORS['text_muted']};
-        font-weight: 500;
-        margin-left: 4px;
+        font-size: 13px; color: {COLORS['text_muted']};
+        font-weight: 500; margin-left: 4px;
     }}
-    .kpi-delta {{
-        font-size: 12px;
-        margin-top: 6px;
-        font-weight: 500;
-    }}
+    .kpi-delta {{ font-size: 12px; margin-top: 6px; font-weight: 500; }}
     .kpi-delta.up   {{ color: {COLORS['green']}; }}
     .kpi-delta.down {{ color: {COLORS['red']}; }}
     .kpi-delta.flat {{ color: {COLORS['text_muted']}; }}
 
-    /* Chart container */
-    .chart-card {{
-        background: {COLORS['bg_card']};
-        border: 1px solid {COLORS['border']};
-        border-radius: 12px;
-        padding: 20px;
-        margin-bottom: 16px;
-    }}
+    /* Chart titles (always rendered ABOVE chart, never empty/undefined) */
     .chart-title {{
-        font-size: 14px;
-        font-weight: 600;
+        font-size: 14px; font-weight: 600;
         color: {COLORS['text']};
-        margin-bottom: 4px;
+        margin: 4px 0 2px 0;
     }}
     .chart-subtitle {{
-        font-size: 12px;
-        color: {COLORS['text_muted']};
-        margin-bottom: 16px;
+        font-size: 12px; color: {COLORS['text_muted']};
+        margin-bottom: 10px;
     }}
 
-    /* Info / callout */
+    /* Callout */
     .callout {{
         background: linear-gradient(135deg, rgba(59,130,246,0.08) 0%, rgba(139,92,246,0.05) 100%);
         border: 1px solid rgba(59,130,246,0.2);
@@ -248,34 +213,24 @@ st.markdown(f"""
         border-left-color: {COLORS['green']};
         background: linear-gradient(135deg, rgba(16,185,129,0.08) 0%, rgba(16,185,129,0.03) 100%);
     }}
-    .callout-warning {{
-        border-left-color: {COLORS['amber']};
-        background: linear-gradient(135deg, rgba(245,158,11,0.08) 0%, rgba(245,158,11,0.03) 100%);
-    }}
 
     /* Status pills */
     .pill {{
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        padding: 4px 10px;
-        border-radius: 999px;
-        font-size: 11px;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.04em;
+        display: inline-flex; align-items: center; gap: 6px;
+        padding: 4px 10px; border-radius: 999px;
+        font-size: 11px; font-weight: 600;
+        text-transform: uppercase; letter-spacing: 0.04em;
     }}
     .pill-green {{ background: rgba(16,185,129,0.12); color: {COLORS['green']}; }}
     .pill-amber {{ background: rgba(245,158,11,0.12); color: {COLORS['amber']}; }}
     .pill-red   {{ background: rgba(239,68,68,0.12); color: {COLORS['red']}; }}
-    .pill-blue  {{ background: rgba(59,130,246,0.12); color: {COLORS['accent']}; }}
     .pill .dot {{
         width: 6px; height: 6px; border-radius: 50%;
         background: currentColor;
         box-shadow: 0 0 8px currentColor;
     }}
 
-    /* Streamlit widgets */
+    /* Widgets */
     .stSelectbox > div > div {{
         background: {COLORS['bg_card']} !important;
         border: 1px solid {COLORS['border']} !important;
@@ -284,13 +239,8 @@ st.markdown(f"""
     }}
     .stSelectbox label, .stSlider label {{
         color: {COLORS['text_dim']} !important;
-        font-size: 12px !important;
-        font-weight: 600 !important;
-        text-transform: uppercase;
-        letter-spacing: 0.06em;
-    }}
-    .stSlider > div > div > div {{
-        background: {COLORS['border']} !important;
+        font-size: 12px !important; font-weight: 600 !important;
+        text-transform: uppercase; letter-spacing: 0.06em;
     }}
     .stSlider [data-baseweb="slider"] [role="slider"] {{
         background: {COLORS['accent']} !important;
@@ -305,6 +255,22 @@ st.markdown(f"""
         overflow: hidden;
     }}
 
+    /* Download button */
+    .stDownloadButton button {{
+        background: {COLORS['bg_card']} !important;
+        border: 1px solid {COLORS['border']} !important;
+        color: {COLORS['text']} !important;
+        border-radius: 8px !important;
+        font-size: 13px !important;
+        font-weight: 500 !important;
+        padding: 8px 16px !important;
+        transition: all 0.15s;
+    }}
+    .stDownloadButton button:hover {{
+        border-color: {COLORS['accent']} !important;
+        background: {COLORS['bg_elevated']} !important;
+    }}
+
     /* Sidebar brand */
     .brand {{
         display: flex; align-items: center; gap: 10px;
@@ -313,19 +279,16 @@ st.markdown(f"""
         margin-bottom: 18px;
     }}
     .brand-logo {{
-        width: 32px; height: 32px;
-        border-radius: 8px;
+        width: 32px; height: 32px; border-radius: 8px;
         background: {COLORS['gradient_1']};
         display: flex; align-items: center; justify-content: center;
         font-size: 16px; font-weight: 800; color: white;
     }}
     .brand-name {{
-        font-size: 14px; font-weight: 700; color: {COLORS['text']};
-        line-height: 1.2;
+        font-size: 14px; font-weight: 700;
+        color: {COLORS['text']}; line-height: 1.2;
     }}
-    .brand-sub {{
-        font-size: 11px; color: {COLORS['text_muted']};
-    }}
+    .brand-sub {{ font-size: 11px; color: {COLORS['text_muted']}; }}
 
     /* Sidebar context block */
     .ctx-block {{
@@ -341,68 +304,60 @@ st.markdown(f"""
     }}
     .ctx-row .lbl {{ color: {COLORS['text_muted']}; }}
     .ctx-row .val {{ color: {COLORS['text']}; font-weight: 600; }}
-
-    /* Section divider */
-    .divider {{
-        height: 1px;
-        background: {COLORS['border']};
-        margin: 28px 0 24px 0;
-    }}
 </style>
 """, unsafe_allow_html=True)
 
 
 # =====================================================
-# Plotly Default Layout
+# Plotly Styling
 # =====================================================
 
-PLOTLY_LAYOUT = dict(
-    paper_bgcolor="rgba(0,0,0,0)",
-    plot_bgcolor="rgba(0,0,0,0)",
-    font=dict(family="Inter, sans-serif", color=COLORS['text_dim'], size=12),
-    xaxis=dict(
-        gridcolor=COLORS['border'],
-        zerolinecolor=COLORS['border'],
-        linecolor=COLORS['border'],
-        tickfont=dict(color=COLORS['text_muted'], size=11),
-        title_font=dict(color=COLORS['text_dim'], size=12)
-    ),
-    yaxis=dict(
-        gridcolor=COLORS['border'],
-        zerolinecolor=COLORS['border'],
-        linecolor=COLORS['border'],
-        tickfont=dict(color=COLORS['text_muted'], size=11),
-        title_font=dict(color=COLORS['text_dim'], size=12)
-    ),
-    legend=dict(
-        bgcolor="rgba(0,0,0,0)",
-        bordercolor=COLORS['border'],
-        font=dict(color=COLORS['text_dim'], size=11)
-    ),
-    margin=dict(l=10, r=10, t=10, b=10),
-    hoverlabel=dict(
-        bgcolor=COLORS['bg_elevated'],
-        bordercolor=COLORS['border_hover'],
-        font=dict(family="Inter, sans-serif", color=COLORS['text'])
+def style_fig(fig, height=380):
+    """Apply consistent dark theme styling to a Plotly figure."""
+    fig.update_layout(
+        paper_bgcolor="rgba(0,0,0,0)",
+        plot_bgcolor="rgba(0,0,0,0)",
+        font=dict(family="Inter, sans-serif", color=COLORS['text_dim'], size=12),
+        title=None,
+        height=height,
+        margin=dict(l=10, r=10, t=10, b=10),
+        legend=dict(
+            bgcolor="rgba(0,0,0,0)",
+            bordercolor=COLORS['border'],
+            font=dict(color=COLORS['text_dim'], size=11)
+        ),
+        hoverlabel=dict(
+            bgcolor=COLORS['bg_elevated'],
+            bordercolor=COLORS['border_hover'],
+            font=dict(family="Inter, sans-serif", color=COLORS['text'])
+        )
     )
-)
-
-
-def style_fig(fig, height=380, title=None):
-    """Apply consistent dark styling to a Plotly figure."""
-    fig.update_layout(**PLOTLY_LAYOUT, height=height)
-    if title is None:
-        fig.update_layout(title=None)
+    fig.update_xaxes(
+        gridcolor=COLORS['border'], zerolinecolor=COLORS['border'],
+        linecolor=COLORS['border'],
+        tickfont=dict(color=COLORS['text_muted'], size=11),
+        title_font=dict(color=COLORS['text_dim'], size=12)
+    )
+    fig.update_yaxes(
+        gridcolor=COLORS['border'], zerolinecolor=COLORS['border'],
+        linecolor=COLORS['border'],
+        tickfont=dict(color=COLORS['text_muted'], size=11),
+        title_font=dict(color=COLORS['text_dim'], size=12)
+    )
     return fig
 
 
 # =====================================================
-# Data Loaders (cached)
+# Data Loaders
 # =====================================================
 
 @st.cache_data
 def load_features():
-    return pd.read_parquet(FEATURE_PATH)
+    df = pd.read_parquet(FEATURE_PATH)
+    # Clip retention to a physically reasonable upper bound — removes sensor noise outliers
+    if "capacity_retention" in df.columns:
+        df["capacity_retention"] = df["capacity_retention"].clip(upper=1.05)
+    return df
 
 
 @st.cache_resource
@@ -428,7 +383,6 @@ def load_weibull_summary():
 # =====================================================
 
 def kpi(label, value, unit="", delta=None, delta_direction="flat"):
-    """Render a single KPI card."""
     unit_html = f'<span class="kpi-unit">{unit}</span>' if unit else ""
     delta_html = (
         f'<div class="kpi-delta {delta_direction}">{delta}</div>'
@@ -444,7 +398,6 @@ def kpi(label, value, unit="", delta=None, delta_direction="flat"):
 
 
 def health_pill(retention):
-    """Return a coloured health pill for a given capacity retention."""
     if retention >= 0.85:
         return '<span class="pill pill-green"><span class="dot"></span>Healthy</span>'
     if retention >= 0.75:
@@ -480,8 +433,17 @@ def section(title):
     st.markdown(f'<div class="section-title">{title}</div>', unsafe_allow_html=True)
 
 
+def chart_header(title, subtitle):
+    """Render a chart title + subtitle ABOVE a chart (prevents undefined labels)."""
+    st.markdown(
+        f'<div class="chart-title">{title}</div>'
+        f'<div class="chart-subtitle">{subtitle}</div>',
+        unsafe_allow_html=True
+    )
+
+
 # =====================================================
-# Load Everything
+# Load Data
 # =====================================================
 
 features = load_features()
@@ -491,7 +453,7 @@ weibull_summary = load_weibull_summary()
 
 
 # =====================================================
-# Sidebar — Brand + Navigation + Filters
+# Sidebar
 # =====================================================
 
 with st.sidebar:
@@ -506,27 +468,23 @@ with st.sidebar:
     """, unsafe_allow_html=True)
 
     page = st.radio(
-    "Navigation",
-    [
-        "Fleet Overview",
-        "Cell Explorer",
-        "RUL Prediction",
-        "Reliability Analysis",
-        "Model Explainability",
-        "Model Comparison"
-    ],
-    label_visibility="visible",
-    key="nav"
-)
+        "Navigation",
+        [
+            "Fleet Overview",
+            "Cell Explorer",
+            "RUL Prediction",
+            "Reliability Analysis",
+            "Model Explainability",
+            "Model Comparison"
+        ],
+        label_visibility="visible",
+        key="nav"
+    )
 
     st.markdown("---")
 
     cell_ids = sorted(features["cell_id"].unique())
-    selected_cell = st.selectbox(
-        "Battery Cell",
-        cell_ids,
-        format_func=clean_cell_name
-    )
+    selected_cell = st.selectbox("Battery Cell", cell_ids, format_func=clean_cell_name)
 
     selected_cell_df = features[features["cell_id"] == selected_cell].copy()
     cycle_min = int(selected_cell_df["discharge_cycle"].min())
@@ -534,9 +492,7 @@ with st.sidebar:
 
     selected_cycle = st.slider(
         "Discharge Cycle",
-        min_value=cycle_min,
-        max_value=cycle_max,
-        value=cycle_max
+        min_value=cycle_min, max_value=cycle_max, value=cycle_max
     )
 
     selected_cycle_df = selected_cell_df[
@@ -545,7 +501,6 @@ with st.sidebar:
     if selected_cycle_df.empty:
         selected_cycle_df = selected_cell_df.tail(1)
 
-    # Dataset context block
     latest_retention = float(selected_cell_df["capacity_retention"].iloc[-1])
     st.markdown(f"""
         <div class="ctx-block">
@@ -574,7 +529,6 @@ if page == "Fleet Overview":
     st.markdown('<div class="page-subtitle">Cross-cell degradation patterns and health distribution</div>',
                 unsafe_allow_html=True)
 
-    # KPI row
     total_cells = features["cell_id"].nunique()
     total_cycles = len(features)
     avg_retention = features["capacity_retention"].mean()
@@ -589,64 +543,84 @@ if page == "Fleet Overview":
                  delta=f"of {total_cells} cells",
                  delta_direction="down" if failed_cells > 0 else "flat")
 
-    # Capacity fade chart
-    section("Capacity Fade — Full Fleet")
-    with st.container():
-        fig = px.line(
-            features, x="discharge_cycle", y="capacity_retention",
-            color="cell_id", color_discrete_sequence=CELL_COLORS,
-            hover_data={"capacity_ah": ":.3f", "rul": True, "cell_id": False}
-        )
-        fig.add_hline(y=0.70, line_dash="dash", line_color=COLORS['red'],
-                      line_width=1.5, opacity=0.7,
-                      annotation_text="EoL · 70%",
-                      annotation_position="bottom right",
-                      annotation_font_color=COLORS['red'],
-                      annotation_font_size=11)
-        fig.update_traces(line=dict(width=2), hovertemplate=None)
-        fig.update_layout(
-            xaxis_title="Discharge Cycle",
-            yaxis_title="Capacity Retention",
-            legend_title=None,
-            showlegend=False
-        )
-        style_fig(fig, height=440)
-        st.plotly_chart(fig, use_container_width=True)
+    section("Capacity Fade · Full Fleet")
+    chart_header(
+        "Capacity Retention Trajectories",
+        "Each line is one cell · the red dashed line is the 70% End-of-Life threshold"
+    )
 
-    # Two side-by-side distributions
+    # Filter out outlier rows (sensor noise) so chart is clean
+    plot_df = features[
+        (features["capacity_retention"] >= 0.4) &
+        (features["capacity_retention"] <= 1.1)
+    ].copy()
+
+    fig = px.line(
+        plot_df, x="discharge_cycle", y="capacity_retention",
+        color="cell_id", color_discrete_sequence=CELL_COLORS,
+        hover_data={"capacity_ah": ":.3f", "rul": True, "cell_id": False}
+    )
+    fig.add_hline(
+        y=0.70, line_dash="dash", line_color=COLORS['red'],
+        line_width=1.5, opacity=0.7,
+        annotation_text="EoL · 70%",
+        annotation_position="bottom right",
+        annotation_font_color=COLORS['red'],
+        annotation_font_size=11
+    )
+    fig.update_traces(line=dict(width=1.5), opacity=0.75)
+    fig.update_layout(
+        xaxis_title="Discharge Cycle",
+        yaxis_title="Capacity Retention",
+        yaxis_tickformat=".0%",
+        yaxis_range=[0.4, 1.1],
+        showlegend=False,
+        title=None,
+    )
+    style_fig(fig, height=440)
+    st.plotly_chart(fig, use_container_width=True, config={"displayModeBar": False})
+
     section("Distributions")
-    col1, col2 = st.columns(2)
+    col1, col2 = st.columns(2, gap="large")
+
     with col1:
-        fig = px.histogram(features, x="rul", nbins=40,
-                           color_discrete_sequence=[COLORS['accent']])
-        fig.update_traces(marker_line_width=0, opacity=0.85)
+        chart_header(
+            "RUL Distribution",
+            "Remaining cycles across all observations"
+        )
+        fig = px.histogram(
+            features, x="rul", nbins=30,
+            color_discrete_sequence=[COLORS['accent']]
+        )
+        fig.update_traces(marker_line_width=0, opacity=0.9)
         fig.update_layout(
             xaxis_title="Remaining Useful Life (cycles)",
             yaxis_title="Count",
-            bargap=0.05
+            bargap=0.08,
+            title=None,
         )
-        style_fig(fig, height=320)
-        st.markdown('<div class="chart-title">RUL Distribution</div>', unsafe_allow_html=True)
-        st.markdown('<div class="chart-subtitle">Cycles remaining across all observations</div>',
-                    unsafe_allow_html=True)
-        st.plotly_chart(fig, use_container_width=True)
+        style_fig(fig, height=300)
+        st.plotly_chart(fig, use_container_width=True, config={"displayModeBar": False})
 
     with col2:
-        fig = px.histogram(features, x="capacity_ah", nbins=40,
-                           color_discrete_sequence=[COLORS['accent_2']])
-        fig.update_traces(marker_line_width=0, opacity=0.85)
+        chart_header(
+            "Capacity Distribution",
+            "Discharge capacity values across the fleet"
+        )
+        fig = px.histogram(
+            features, x="capacity_ah", nbins=30,
+            color_discrete_sequence=[COLORS['accent_2']]
+        )
+        fig.update_traces(marker_line_width=0, opacity=0.9)
         fig.update_layout(
             xaxis_title="Discharge Capacity (Ah)",
             yaxis_title="Count",
-            bargap=0.05
+            bargap=0.08,
+            title=None,
         )
-        style_fig(fig, height=320)
-        st.markdown('<div class="chart-title">Capacity Distribution</div>', unsafe_allow_html=True)
-        st.markdown('<div class="chart-subtitle">Distribution of discharge capacity values</div>',
-                    unsafe_allow_html=True)
-        st.plotly_chart(fig, use_container_width=True)
+        style_fig(fig, height=300)
+        st.plotly_chart(fig, use_container_width=True, config={"displayModeBar": False})
 
-    # Per-cell summary table
     section("Per-Cell Summary")
     summary = features.groupby("cell_id").agg(
         cycles=("discharge_cycle", "max"),
@@ -668,7 +642,7 @@ if page == "Fleet Overview":
     display_summary["Initial Cap (Ah)"] = display_summary["Initial Cap (Ah)"].round(3)
     display_summary["Final Cap (Ah)"]   = display_summary["Final Cap (Ah)"].round(3)
     display_summary["Retention"]        = (display_summary["Retention"] * 100).round(1).astype(str) + "%"
-    st.dataframe(display_summary, use_container_width=True, hide_index=True)
+    st.dataframe(display_summary, use_container_width=True, hide_index=True, height=320)
 
 
 # =====================================================
@@ -682,7 +656,7 @@ elif page == "Cell Explorer":
                 unsafe_allow_html=True)
 
     latest = selected_cell_df.tail(1).iloc[0]
-    first  = selected_cell_df.iloc[0]
+    first = selected_cell_df.iloc[0]
     cap_drop = first["capacity_ah"] - latest["capacity_ah"]
 
     c1, c2, c3, c4 = st.columns(4)
@@ -692,8 +666,12 @@ elif page == "Cell Explorer":
     with c3: kpi("Retention", f"{latest['capacity_retention']*100:.1f}", unit="%")
     with c4: kpi("Actual RUL", int(latest["rul"]), unit="cycles")
 
-    # Capacity fade with selected cycle marker
     section("Capacity Retention")
+    chart_header(
+        "Retention Over Cycle Life",
+        "Selected cycle marked in amber · 70% EoL threshold in red"
+    )
+
     fig = go.Figure()
     fig.add_trace(go.Scatter(
         x=selected_cell_df["discharge_cycle"],
@@ -713,28 +691,29 @@ elif page == "Cell Explorer":
                   annotation_text=f"Cycle {selected_cycle}",
                   annotation_position="top",
                   annotation_font_color=COLORS['amber'])
-    fig.update_layout(xaxis_title="Discharge Cycle",
-                      yaxis_title="Capacity Retention",
-                      yaxis_tickformat=".0%")
+    fig.update_layout(
+        xaxis_title="Discharge Cycle",
+        yaxis_title="Capacity Retention",
+        yaxis_tickformat=".0%",
+        title=None,
+    )
     style_fig(fig, height=380)
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, use_container_width=True, config={"displayModeBar": False})
 
-    # 2x2 grid of secondary signals
     section("Degradation Signals")
-    col1, col2 = st.columns(2)
+    col1, col2 = st.columns(2, gap="large")
 
     def small_line(df, y_col, title, subtitle, color, y_label):
+        chart_header(title, subtitle)
         fig = go.Figure()
         fig.add_trace(go.Scatter(
             x=df["discharge_cycle"], y=df[y_col],
             mode="lines", line=dict(color=color, width=2),
             hovertemplate=f"Cycle %{{x}}<br>{y_label} %{{y:.4f}}<extra></extra>"
         ))
-        fig.update_layout(xaxis_title="Cycle", yaxis_title=y_label)
-        style_fig(fig, height=270)
-        st.markdown(f'<div class="chart-title">{title}</div>', unsafe_allow_html=True)
-        st.markdown(f'<div class="chart-subtitle">{subtitle}</div>', unsafe_allow_html=True)
-        st.plotly_chart(fig, use_container_width=True)
+        fig.update_layout(xaxis_title="Cycle", yaxis_title=y_label, title=None)
+        style_fig(fig, height=260)
+        st.plotly_chart(fig, use_container_width=True, config={"displayModeBar": False})
 
     with col1:
         small_line(selected_cell_df, "voltage_mean",
@@ -745,13 +724,16 @@ elif page == "Cell Explorer":
                    "Time to 3.0 V Cutoff", "How long the cell sustains voltage",
                    COLORS['green'], "Seconds")
 
-    col3, col4 = st.columns(2)
+    col3, col4 = st.columns(2, gap="large")
     with col3:
         small_line(selected_cell_df, "temp_max",
                    "Peak Temperature", "Maximum cell temperature per cycle",
                    COLORS['amber'], "Temperature (°C)")
     with col4:
-        # Combined impedance chart
+        chart_header(
+            "Impedance Growth",
+            "Internal resistance — leading degradation indicator"
+        )
         fig = go.Figure()
         if "Re" in selected_cell_df.columns:
             fig.add_trace(go.Scatter(
@@ -767,14 +749,14 @@ elif page == "Cell Explorer":
                 mode="lines", name="Rct (charge transfer)",
                 line=dict(color="#EC4899", width=2)
             ))
-        fig.update_layout(xaxis_title="Cycle", yaxis_title="Resistance (Ω)",
-                          legend=dict(orientation="h", yanchor="bottom",
-                                      y=1.02, xanchor="right", x=1))
-        style_fig(fig, height=270)
-        st.markdown('<div class="chart-title">Impedance Growth</div>', unsafe_allow_html=True)
-        st.markdown('<div class="chart-subtitle">Internal resistance — leading degradation indicator</div>',
-                    unsafe_allow_html=True)
-        st.plotly_chart(fig, use_container_width=True)
+        fig.update_layout(
+            xaxis_title="Cycle", yaxis_title="Resistance (Ω)",
+            legend=dict(orientation="h", yanchor="bottom",
+                        y=1.02, xanchor="right", x=1),
+            title=None,
+        )
+        style_fig(fig, height=260)
+        st.plotly_chart(fig, use_container_width=True, config={"displayModeBar": False})
 
 
 # =====================================================
@@ -808,8 +790,11 @@ elif page == "RUL Prediction":
         </div>
     """, unsafe_allow_html=True)
 
-    # Actual vs predicted across full life
     section("Predicted vs Actual RUL Trajectory")
+    chart_header(
+        "RUL Trajectory Over Battery Life",
+        "Dashed line is the recorded RUL · solid blue is the XGBoost prediction"
+    )
 
     pred_df = selected_cell_df.copy()
     X_pred = pred_df[feature_columns].copy()
@@ -838,12 +823,12 @@ elif page == "RUL Prediction":
     fig.update_layout(
         xaxis_title="Discharge Cycle",
         yaxis_title="Remaining Useful Life",
-        legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1)
+        legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
+        title=None,
     )
     style_fig(fig, height=420)
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, use_container_width=True, config={"displayModeBar": False})
 
-    # Feature values at selected cycle
     section("Feature Snapshot · Selected Cycle")
     snapshot = selected_cycle_df[feature_columns + ["rul"]].T.reset_index()
     snapshot.columns = ["Feature", "Value"]
@@ -891,11 +876,14 @@ elif page == "Reliability Analysis":
     max_cycle = int(features["discharge_cycle"].max())
     curve_df = make_weibull_curves(beta, eta, max_cycle=max_cycle)
 
-    # Survival + hazard side by side
     section("Survival & Hazard")
-    col1, col2 = st.columns(2)
+    col1, col2 = st.columns(2, gap="large")
 
     with col1:
+        chart_header(
+            "Survival Function S(t)",
+            "Probability a cell survives past cycle N"
+        )
         fig = go.Figure()
         fig.add_trace(go.Scatter(
             x=curve_df["cycle"], y=curve_df["survival_probability"],
@@ -911,15 +899,16 @@ elif page == "Reliability Analysis":
                       annotation_font_color=COLORS['accent_2'])
         fig.update_layout(xaxis_title="Cycle",
                           yaxis_title="Survival Probability",
-                          yaxis_tickformat=".0%")
-        style_fig(fig, height=360)
-        st.markdown('<div class="chart-title">Survival Function S(t)</div>',
-                    unsafe_allow_html=True)
-        st.markdown('<div class="chart-subtitle">Probability a cell survives past cycle N</div>',
-                    unsafe_allow_html=True)
-        st.plotly_chart(fig, use_container_width=True)
+                          yaxis_tickformat=".0%",
+                          title=None)
+        style_fig(fig, height=340)
+        st.plotly_chart(fig, use_container_width=True, config={"displayModeBar": False})
 
     with col2:
+        chart_header(
+            "Hazard Function h(t)",
+            "Instantaneous failure rate at each cycle"
+        )
         fig = go.Figure()
         fig.add_trace(go.Scatter(
             x=curve_df["cycle"], y=curve_df["hazard_rate"],
@@ -928,15 +917,11 @@ elif page == "Reliability Analysis":
             hovertemplate="Cycle %{x}<br>Hazard %{y:.4f}<extra></extra>"
         ))
         fig.update_layout(xaxis_title="Cycle",
-                          yaxis_title="Instantaneous Failure Rate")
-        style_fig(fig, height=360)
-        st.markdown('<div class="chart-title">Hazard Function h(t)</div>',
-                    unsafe_allow_html=True)
-        st.markdown('<div class="chart-subtitle">Risk of failure at each cycle, given survival</div>',
-                    unsafe_allow_html=True)
-        st.plotly_chart(fig, use_container_width=True)
+                          yaxis_title="Failure Rate",
+                          title=None)
+        style_fig(fig, height=340)
+        st.plotly_chart(fig, use_container_width=True, config={"displayModeBar": False})
 
-    # Dataset details
     section("Reliability Dataset")
     c5, c6, c7 = st.columns(3)
     with c5: kpi("Cells in Study", weibull_summary["num_cells"])
@@ -979,6 +964,10 @@ elif page == "Model Explainability":
     """, unsafe_allow_html=True)
 
     section("Global Feature Importance")
+    chart_header(
+        "Feature Importance Ranking",
+        "Relative contribution of each feature to the XGBoost RUL prediction"
+    )
 
     fig = go.Figure()
     fig.add_trace(go.Bar(
@@ -994,10 +983,12 @@ elif page == "Model Explainability":
     fig.update_layout(
         xaxis_title="Importance (gain)",
         yaxis_title=None,
-        showlegend=False
+        showlegend=False,
+        title=None,
+        bargap=0.25,
     )
-    style_fig(fig, height=max(420, n_features * 24))
-    st.plotly_chart(fig, use_container_width=True)
+    style_fig(fig, height=max(380, n_features * 22))
+    st.plotly_chart(fig, use_container_width=True, config={"displayModeBar": False})
 
     section("Ranked Features")
     table_df = importance.reset_index()
@@ -1006,7 +997,7 @@ elif page == "Model Explainability":
     table_df["Rank"] = table_df.index + 1
     table_df["Importance"] = table_df["Importance"].round(4)
     table_df = table_df[["Rank", "Feature", "Importance"]]
-    st.dataframe(table_df, use_container_width=True, hide_index=True)
+    st.dataframe(table_df, use_container_width=True, hide_index=True, height=400)
 
 
 # =====================================================
@@ -1014,144 +1005,140 @@ elif page == "Model Explainability":
 # =====================================================
 
 elif page == "Model Comparison":
-    st.markdown(
-        '<div class="page-title">Model Comparison</div>',
-        unsafe_allow_html=True
-    )
-    st.markdown(
-        '<div class="page-subtitle">Baseline forecasting models compared against the full multivariate XGBoost model</div>',
-        unsafe_allow_html=True
-    )
+    st.markdown('<div class="page-title">Model Comparison</div>', unsafe_allow_html=True)
+    st.markdown('<div class="page-subtitle">Baseline forecasting models compared against the full multivariate XGBoost model</div>',
+                unsafe_allow_html=True)
 
     comparison_df = pd.DataFrame({
         "Model": [
             "ARIMA Baseline",
-            "XGBoost Capacity-Only",
-            "XGBoost Full Features"
+            "XGBoost (Capacity Only)",
+            "XGBoost (Full Features)"
         ],
-        "RMSE": [
-            267.57,
-            22.11,
-            13.52
-        ],
-        "MAE": [
-            244.20,
-            15.82,
-            10.01
-        ],
-        "R²": [
-            -26.20,
-            0.5144,
-            0.8247
-        ]
+        "Model Short": ["ARIMA", "XGB · Capacity", "XGB · Full"],
+        "RMSE": [267.57, 22.11, 13.52],
+        "MAE":  [244.20, 15.82, 10.01],
+        "R²":   [-26.20, 0.5144, 0.8247]
     })
 
-    best_model = comparison_df.loc[comparison_df["RMSE"].idxmin(), "Model"]
-    best_rmse = comparison_df["RMSE"].min()
-    best_mae = comparison_df.loc[comparison_df["RMSE"].idxmin(), "MAE"]
+    best_idx = comparison_df["RMSE"].idxmin()
+    best_rmse = comparison_df.loc[best_idx, "RMSE"]
+    best_mae = comparison_df.loc[best_idx, "MAE"]
+    best_r2 = comparison_df.loc[best_idx, "R²"]
 
-    c1, c2, c3 = st.columns(3)
-
-    with c1:
-        kpi("Best Model", best_model)
-
-    with c2:
-        kpi("Best RMSE", f"{best_rmse:.2f}", unit="cycles")
-
-    with c3:
-        kpi("Best MAE", f"{best_mae:.2f}", unit="cycles")
+    c1, c2, c3, c4 = st.columns(4)
+    with c1: kpi("Best Model", "XGB · Full",
+                 delta="full multivariate", delta_direction="up")
+    with c2: kpi("Best RMSE", f"{best_rmse:.2f}", unit="cycles")
+    with c3: kpi("Best MAE", f"{best_mae:.2f}", unit="cycles")
+    with c4: kpi("Best R²", f"{best_r2:.3f}",
+                 delta=f"{best_r2*100:.1f}% variance explained",
+                 delta_direction="up")
 
     st.markdown("""
         <div class="callout callout-success">
             The full-feature XGBoost model achieved the best forecasting performance.
-            This shows that voltage, impedance, thermal, and discharge-duration features
-            add significant predictive value beyond capacity-only degradation signals.
+            Voltage, impedance, thermal, and discharge-duration features add significant
+            predictive value beyond capacity-only degradation signals.
         </div>
     """, unsafe_allow_html=True)
 
     section("Performance Summary")
-
-    display_df = comparison_df.copy()
+    display_df = comparison_df[["Model", "RMSE", "MAE", "R²"]].copy()
     display_df["RMSE"] = display_df["RMSE"].round(2)
     display_df["MAE"] = display_df["MAE"].round(2)
     display_df["R²"] = display_df["R²"].round(4)
+    st.dataframe(display_df, use_container_width=True, hide_index=True, height=180)
 
-    st.dataframe(
-        display_df,
-        use_container_width=True,
-        hide_index=True
-    )
+    section("Error Metrics")
+    col1, col2 = st.columns(2, gap="large")
+    bar_colors = [COLORS["red"], COLORS["amber"], COLORS["green"]]
 
-    section("RMSE Comparison")
+    with col1:
+        chart_header("RMSE Comparison", "Lower is better")
+        fig = go.Figure()
+        fig.add_trace(go.Bar(
+            x=comparison_df["Model Short"],
+            y=comparison_df["RMSE"],
+            text=[f"{v:.2f}" for v in comparison_df["RMSE"]],
+            textposition="outside",
+            textfont=dict(color=COLORS['text'], size=12),
+            marker=dict(color=bar_colors, line=dict(width=0)),
+            width=0.55,
+            hovertemplate="<b>%{x}</b><br>RMSE: %{y:.2f} cycles<extra></extra>"
+        ))
+        fig.update_layout(
+            xaxis_title=None,
+            yaxis_title="RMSE (cycles)",
+            showlegend=False,
+            bargap=0.4,
+            title=None,
+        )
+        style_fig(fig, height=340)
+        st.plotly_chart(fig, use_container_width=True, config={"displayModeBar": False})
 
-    fig_rmse = go.Figure()
+    with col2:
+        chart_header("MAE Comparison", "Lower is better")
+        fig = go.Figure()
+        fig.add_trace(go.Bar(
+            x=comparison_df["Model Short"],
+            y=comparison_df["MAE"],
+            text=[f"{v:.2f}" for v in comparison_df["MAE"]],
+            textposition="outside",
+            textfont=dict(color=COLORS['text'], size=12),
+            marker=dict(color=bar_colors, line=dict(width=0)),
+            width=0.55,
+            hovertemplate="<b>%{x}</b><br>MAE: %{y:.2f} cycles<extra></extra>"
+        ))
+        fig.update_layout(
+            xaxis_title=None,
+            yaxis_title="MAE (cycles)",
+            showlegend=False,
+            bargap=0.4,
+            title=None,
+        )
+        style_fig(fig, height=340)
+        st.plotly_chart(fig, use_container_width=True, config={"displayModeBar": False})
 
-    fig_rmse.add_trace(go.Bar(
-        x=comparison_df["Model"],
-        y=comparison_df["RMSE"],
-        marker=dict(
-            color=[
-                COLORS["red"],
-                COLORS["amber"],
-                COLORS["green"]
-            ],
-            line=dict(width=0)
-        ),
-        hovertemplate="<b>%{x}</b><br>RMSE: %{y:.2f} cycles<extra></extra>"
+    section("Variance Explained")
+    chart_header("R² Score", "Higher is better · negative means worse than predicting the mean")
+
+    fig = go.Figure()
+    fig.add_trace(go.Bar(
+        x=comparison_df["Model Short"],
+        y=comparison_df["R²"],
+        text=[f"{v:.3f}" for v in comparison_df["R²"]],
+        textposition="outside",
+        textfont=dict(color=COLORS['text'], size=12),
+        marker=dict(color=bar_colors, line=dict(width=0)),
+        width=0.4,
+        hovertemplate="<b>%{x}</b><br>R²: %{y:.4f}<extra></extra>"
     ))
-
-    fig_rmse.update_layout(
+    fig.add_hline(y=0, line_color=COLORS['border_hover'], line_width=1)
+    fig.update_layout(
         xaxis_title=None,
-        yaxis_title="RMSE, cycles",
-        showlegend=False
+        yaxis_title="R² Score",
+        showlegend=False,
+        bargap=0.5,
+        title=None,
     )
-
-    style_fig(fig_rmse, height=380)
-    st.plotly_chart(fig_rmse, use_container_width=True)
-
-    section("MAE Comparison")
-
-    fig_mae = go.Figure()
-
-    fig_mae.add_trace(go.Bar(
-        x=comparison_df["Model"],
-        y=comparison_df["MAE"],
-        marker=dict(
-            color=[
-                COLORS["red"],
-                COLORS["amber"],
-                COLORS["green"]
-            ],
-            line=dict(width=0)
-        ),
-        hovertemplate="<b>%{x}</b><br>MAE: %{y:.2f} cycles<extra></extra>"
-    ))
-
-    fig_mae.update_layout(
-        xaxis_title=None,
-        yaxis_title="MAE, cycles",
-        showlegend=False
-    )
-
-    style_fig(fig_mae, height=380)
-    st.plotly_chart(fig_mae, use_container_width=True)
+    style_fig(fig, height=320)
+    st.plotly_chart(fig, use_container_width=True, config={"displayModeBar": False})
 
     section("Modeling Insight")
-
     st.markdown("""
         <div class="callout">
-            ARIMA performed poorly because it only models a univariate capacity-retention
+            <b>ARIMA</b> performed poorly because it only models a univariate capacity-retention
             trajectory and struggles with noisy, heterogeneous, and censored battery lifecycles.
-            The capacity-only XGBoost baseline improved performance by learning nonlinear
-            degradation patterns. The full-feature XGBoost model performed best because it
-            combines capacity, voltage, impedance, temperature, and discharge-duration signals.
+            <b>XGBoost (capacity-only)</b> improved performance significantly by learning nonlinear
+            degradation patterns. <b>XGBoost (full features)</b> performed best — it combines capacity,
+            voltage, impedance, temperature, and discharge-duration signals into a single robust model.
         </div>
     """, unsafe_allow_html=True)
 
-    csv = comparison_df.to_csv(index=False)
-
+    csv = comparison_df[["Model", "RMSE", "MAE", "R²"]].to_csv(index=False)
     st.download_button(
-        label="Download Model Comparison CSV",
+        label="Download Comparison CSV",
         data=csv,
         file_name="model_comparison.csv",
         mime="text/csv"
