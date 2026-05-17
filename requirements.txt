@@ -1,0 +1,15 @@
+numpy
+pandas
+scipy
+h5py
+pyarrow
+tqdm
+matplotlib
+seaborn
+scikit-learn
+xgboost
+lifelines
+statsmodels
+streamlit
+jupyter
+notebook
